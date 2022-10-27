@@ -13,7 +13,20 @@ exports.tampilsemuamahasiswa = (req, res) => {
     const sql = 'SELECT * FROM mahasiswa'
     connection.query(sql, (error, rows, fileds) => {
         if (error) {
-            connection.log(error)
+            console.log(error)
+        } else {
+            response.ok(rows, res)
+        }
+    })
+}
+
+// Menampilkan data mahasiswa berdasarkan id
+exports.tempilberdasarkanid = (req, res) => {
+    const id = req.params.id
+    const sql = `SELECT * FROM mahasiswa WHERE id_mahasiswa = ${id}`
+    connection.query(sql, (error, rows, fileds) => {
+        if (error) {
+            console.log(error)
         } else {
             response.ok(rows, res)
         }
