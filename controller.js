@@ -49,3 +49,20 @@ exports.tambahmahasiswa = (req, res) => {
         }
     })
 }
+
+// Mengubah data berdasarkan ID
+exports.ubahmahasiswa = (req, res) => {
+    const id = req.params.id
+    const nim = req.body.nim
+    const nama = req.body.nama
+    const jurusan = req.body.jurusan
+
+    const sql = `UPDATE mahasiswa SET nim = ${nim}, nama = '${nama}', jurusan = '${jurusan}' WHERE id_mahasiswa = ${id}`
+    connection.query(sql, (error, rows, fields) => {
+        if (error) {
+            console.log(error)
+        } else {
+            response.ok('Berhasil mengubah data', res)
+        }
+    })
+}
