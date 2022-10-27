@@ -66,3 +66,17 @@ exports.ubahmahasiswa = (req, res) => {
         }
     })
 }
+
+// Menghapus data berdasarkan ID
+exports.hapusmahasiswa = (req, res) => {
+    const id = req.params.id
+
+    const sql = `DELETE FROM mahasiswa WHERE id_mahasiswa=${id}`
+    connection.query(sql, (error, rows, fields) => {
+        if (error) {
+            console.log(error)
+        } else {
+            response.ok('Berhasil menghapus data', res)
+        }
+    })
+}
