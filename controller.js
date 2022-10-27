@@ -5,5 +5,17 @@ const response = require('./res')
 const connection = require('./koneksi')
 
 exports.index = (req, res) => {
-    response.ok('Aplikasi rest API berjalan')
+    response.ok('Aplikasi rest API berjalan', res)
+}
+
+// Menampilkan semua data mahsaiswa
+exports.tampilsemuamahasiswa = (req, res) => {
+    const sql = 'SELECT * FROM mahasiswa'
+    connection.query(sql, (error, rows, fileds) => {
+        if (error) {
+            connection.log(error)
+        } else {
+            response.ok(rows, res)
+        }
+    })
 }
