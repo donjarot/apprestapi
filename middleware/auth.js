@@ -22,7 +22,7 @@ exports.registrasi = (req, res) => {
             console.log(error)
         } else {
             if (rows.length == 0) {
-                const sql = `INSERT INTO user (username, email, password, role, tanggal_daftar) VALUES ('${post.username}', '${post.email}', '${post.password}', ${post.role}, ${post.tanggal_daftar})`
+                const sql = `INSERT INTO user (username, email, password, role, tanggal_daftar) VALUES ('${post.username}', '${post.email}', '${post.password}', ${post.role}, '${post.tanggal_daftar}')`
                 connection.query(sql, post, (error, rows) => {
                     if (error) {
                         console.log(error)
@@ -31,7 +31,7 @@ exports.registrasi = (req, res) => {
                     }
                 })
             } else {
-                response.ok('Email sudah terdaftar!')
+                response.ok('Email sudah terdaftar!', res)
             }
         }
     })
